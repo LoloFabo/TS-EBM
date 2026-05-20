@@ -10,3 +10,10 @@ where download FluidR3_GM.sf2
 give dependancies : 
 
 
+
+
+
+
+
+futur works :
+explore 1D CNN with WAV convert to slope vectors
