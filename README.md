@@ -10,10 +10,19 @@ where download FluidR3_GM.sf2
 give dependancies : 
 
 
+prog to convert WAV to MEL-Spectrogramm
+explain + dependancies
 
+
+model with melspectro input and output
+
+what do i use to convert mal spectro to wav ?
+explain + epandancies etc...
 
 
 
 
 futur works :
-explore 1D CNN with WAV convert to slope vectors
+explore multiple 1D CNN entries with WAV convert to multi-scale slope vectors
+add futur architecture jpg
+explain the use of EBM1_Energy + EBM_Energy + ... -> 0
