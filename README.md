@@ -1,4 +1,4 @@
-# EBM_WAV_gen
+# TS-EBM
 This project has vocation to explore Wav generation capabilities of Energy Based Model architecture
 
 Trajectory-Sculpted Energy-Based Model (TS-EBM) for Audio Generation
