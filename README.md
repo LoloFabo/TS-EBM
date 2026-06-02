@@ -47,7 +47,10 @@ The training pipeline functional and stable.
 
 > *Figure 1: Comparison between a real Log-Mel-Spectrogram, pure Gaussian noise, and the current output of the TS-EBM generator.*
 
-> **[ 🖼️ PLACEHOLDER: Insert screenshot of the console output / Loss logs here ]**
+<img width="960" height="612" alt="2026-06-03 01_07_56-IDLE Shell 3 13 0" src="https://github.com/user-attachments/assets/d83e4801-d88c-4f1b-bc8e-b858a38e78fb" />
+
+>
+> *Figure 2: Training logs at the end of Epoch 50. The real data loss (`L_Réel`) is highly stable and near zero (< 0.005), proving the model successfully anchors reality. The pure noise loss (`L_Bruit`) remains high and variable (3-5). As expected at this early training stage, the trajectory loss (`L_Trajectoire`) is highly chaotic (jumping between 1 and 7). This high variance reflects an energy landscape that is not yet fully sculpted, compounded by the pseudo-random sparse sampling of intermediate generation steps.*
 
 ## Roadmap & Immediate Next Steps
 
