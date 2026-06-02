@@ -56,9 +56,9 @@ The training pipeline functional and stable.
 
 Because the model accurately recognizes real inputs but struggles to generate them from noise, the loss functions are working, but the **Langevin sampling process** requires fine-tuning.
 
-- [ ] **Hyperparameter Exploration:** Investigate the Langevin step size (`step_size`), the noise scale (`noise_scale`), and massively increasing the number of generation steps (`max_steps` to 1000+) to see where the sculpted noise ultimately leads.
-- [ ] **Organic Curve Alignment:** Study the relationship between our imposed algebraic curve and the natural evolution of the model. The goal is to design an "organic" curve that adapts dynamically to the model's natural training velocity (Curriculum Learning).
-- [ ] **Architectural Smoothing:** Implement Spectral Normalization in the Convolutional/Linear layers to enforce a 1-Lipschitz constraint, ensuring the energy landscape doesn't have infinite gradients that block the Langevin process.
+- **Hyperparameter Exploration:** Investigate the Langevin step size (`step_size`), the noise scale (`noise_scale`), and massively increasing the number of generation steps (`max_steps` to 1000+) to see where the sculpted noise ultimately leads.
+- **Organic Curve Alignment:** Study the relationship between our imposed algebraic curve and the natural evolution of the model. The goal is to design an "organic" curve that adapts dynamically to the model's natural training velocity (Curriculum Learning).
+- **Architectural Smoothing:** Implement Spectral Normalization in the Convolutional/Linear layers to enforce a 1-Lipschitz constraint, ensuring the energy landscape doesn't have infinite gradients that block the Langevin process.
 
 ## Auxiliary Tools Included
 
