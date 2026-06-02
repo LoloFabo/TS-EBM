@@ -1,10 +1,10 @@
 # Trajectory-Sculpted Energy-Based Model (TS-EBM) for Audio Generation
 
-Welcome to the **TS-EBM** project! This repository hosts an experimental approach to **Energy-Based Models (EBMs)** applied to audio generation (Log-Mel-Spectrograms). 
+This repository hosts an experimental approach to **Energy-Based Models (EBMs)** applied to audio generation (Log-Mel-Spectrograms). 
 
 While classical EBMs often struggle with unstable training and chaotic energy landscapes, this project introduces a novel architectural concept: **actively sculpting the intermediate generation trajectory by forcing the energy to follow a parameterized mathematical curve**.
 
-## 🧠 Background: What is a Classical EBM?
+## What is a Classical EBM?
 
 In Machine Learning, an Energy-Based Model (EBM) maps any input (e.g., an image or an audio spectrogram) to a single scalar value called **Energy**. 
 * **Low Energy** = High probability (The data looks real).
@@ -14,7 +14,7 @@ Traditionally, EBMs are trained using **Contrastive Divergence** (Hinton, 2002 [
 
 However, standard EBMs often create "cliffs" in the energy landscape, making it hard for the Langevin dynamics to smoothly navigate from pure noise (chaos) to a real sample (organized data).
 
-## 🚀 The TS-EBM Innovation: Nuances of Chaos and Curve Alignment
+## The TS-EBM Innovation: Nuances of Chaos and Curve Alignment
 
 This project diverges from the classical binary approach (Real vs. Fake) by introducing a **Self-Improving Generation Trajectory**. The core idea bridges classical EBMs with concepts found in modern Diffusion Models (like noise schedules), but applied directly to the energy landscape.
 
@@ -33,23 +33,23 @@ $$f(t) = \frac{A}{1 + t^m}$$
 
 **Originality:** While the literature contains many methods to improve EBM training (such as Score Matching by Yang Song et al. [2], or Persistent Contrastive Divergence [3]), **explicitly regressing the scalar energy output against a parametric decay curve over Langevin steps** is, to our knowledge, a highly original architectural choice. It acts as a geometric constraint, teaching the model not just *what* reality is, but *how fast and smoothly* it should be reached.
 
-## 📊 Current State and Results
+## Current State and Results
 
-The training pipeline is fully functional and stable. 
+The training pipeline functional and stable. 
 
 **Initial Observations:**
-1. **Successful Discrimination:** The model perfectly understands the extremes. It accurately assigns an energy of `~0.0` to real spectrograms and `~8.0` to pure white noise.
+1. **Successful Discrimination:** The model perfectly understands the extremes. It accurately assigns an energy of `~0.0` to real spectrograms and `~6.0` to pure white noise, with only 50 epochs.
 2. **Current Challenge:** Currently, the generated "sculpted noise" still yields a high energy and visually resembles pure noise. The gradient descent during Langevin dynamics does not yet efficiently traverse the sculpted valleys to reach the real data manifold. 
 
 *(See visual examples below)*
 
-> **[ 🖼️ PLACEHOLDER: Insert screenshot of the 3 Spectrograms here (Real / Pure Noise / Generated) ]**
-> 
+<img width="1470" height="506" alt="2026-06-03 00_49_29-Figure 1" src="https://github.com/user-attachments/assets/545c8b70-dccc-423f-ab80-8037e77b2fff" />
+
 > *Figure 1: Comparison between a real Log-Mel-Spectrogram, pure Gaussian noise, and the current output of the TS-EBM generator.*
 
 > **[ 🖼️ PLACEHOLDER: Insert screenshot of the console output / Loss logs here ]**
 
-## 🗺️ Roadmap & Immediate Next Steps
+## Roadmap & Immediate Next Steps
 
 Because the model accurately recognizes real inputs but struggles to generate them from noise, the loss functions are working, but the **Langevin sampling process** requires fine-tuning.
 
@@ -57,14 +57,14 @@ Because the model accurately recognizes real inputs but struggles to generate th
 - [ ] **Organic Curve Alignment:** Study the relationship between our imposed algebraic curve and the natural evolution of the model. The goal is to design an "organic" curve that adapts dynamically to the model's natural training velocity (Curriculum Learning).
 - [ ] **Architectural Smoothing:** Implement Spectral Normalization in the Convolutional/Linear layers to enforce a 1-Lipschitz constraint, ensuring the energy landscape doesn't have infinite gradients that block the Langevin process.
 
-## 🛠️ Auxiliary Tools Included
+## Auxiliary Tools Included
 
 This repository is designed to be a complete pipeline for audio generation experimentation. It includes:
 
-* `midi_to_wav.py`: A Python script to easily generate a database of short audio WAV files from MIDI sequences.
+* `midi_to_wav.py`: A Python script to easily generate a database of short audio WAV files from MIDI instruments (I use FluidR3_GM).
 * `wav_to_melspectrogram.py`: A preprocessing script that converts a folder of WAV files into Log-Mel-Spectrograms, outputting a ready-to-use PyTorch tensor file (`dataset_mels.pt` in `float32`).
 
-## 💻 Getting Started
+## Getting Started
 
 **Prerequisites:** PyTorch, Torchaudio, Matplotlib, PIL.
 
@@ -79,9 +79,8 @@ This repository is designed to be a complete pipeline for audio generation exper
     ```
 
 ---
-*Contributions, ideas, and discussions are highly welcome! If you are interested in physics-inspired generative models, feel free to open an issue or a pull request.*
 
-**References:**
+**Some References:**
 * [1] Hinton, G. E. (2002). *Training products of experts by minimizing contrastive divergence*.
 * [2] Song, Y., & Ermon, S. (2019). *Generative Modeling by Estimating Gradients of the Data Distribution*.
 * [3] Tieleman, T. (2008). *Training restricted Boltzmann machines using approximations to the likelihood gradient*.
